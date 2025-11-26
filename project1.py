@@ -1,5 +1,6 @@
 from Playlist import Playlist as PL
 from SparseSet import SparseSet as SpSet
+from Artist import Artist
 class Spotifun:
     def __init__(self):
         # self.sparse = {} # for id's index
@@ -18,10 +19,12 @@ class Spotifun:
         # if artist_id > 100:
         #     print("id is out of correct range.")
         #     return
-        self.SSet.insert(artist_id)
+        artist = Artist(artist_name,artist_id)
+        
+        self.SSet.insert(artist)
         # self.sparse[artist_id] = len(self.dense)
         # self.dense.append(artist_id)
-        self.artist_name[artist_id] = artist_name
+        # self.artist_name[artist_id] = artist_name
         
     #==============================REMOVE  ARTIST==============================
     def dels(self,artist_id):
@@ -40,7 +43,7 @@ class Spotifun:
         # self.sparse.pop(artist_id,None)
         self.SSet.delete(artist_id)
         #delete id name
-        self.artist_name.pop(artist_id,None)
+        # self.artist_name.pop(artist_id,None)
     #==============================ADD NEW  MUSIC==============================    
     def addms(self,music_name ,artist_name,year,rating,contents):
         self.songs[len(self.songs)+1]= { "mname":music_name ,"aname":artist_name,"year":year,"rating":rating,"contents":contents}

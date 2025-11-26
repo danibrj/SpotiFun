@@ -27,6 +27,6 @@ class Playlist:
     def merge_by_year(self):
         years = self.playlist_songs.get_years()
     
-    def merge(self,years):
+    # def merge(self,years):
         
         

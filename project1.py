@@ -8,8 +8,8 @@ class Spotifun:
         # self.sparse = {} # for id's index
         # self.dense = [] # for ids
         self.SSet = SpSet(100,100)
-        self.artist_name = {} # for id's name
-        self.songs = {}
+        # self.artist_name = {} # for id's name
+        # self.songs = {}
         self.playlists = {}
         
     #==============================ADD NEW ARTIST==============================
@@ -50,7 +50,7 @@ class Spotifun:
     def addms(self,music_name ,artist_name,year,rating,contents):
         # self.songs[len(self.songs)+1]= { "mname":music_name ,"aname":artist_name,"year":year,"rating":rating,"contents":contents}
         
-        self.SSet.add_music_to_a_artist(music_name ,artist_name,year,rating,contents)
+        self.SSet.add_music_to_all_songs(music_name ,artist_name,year,rating,contents)
         
     #===============================FIND A MUSIC===============================
     def findms(self,music_name):
@@ -168,23 +168,28 @@ class Spotifun:
                 
     #=======================PRINT ALL ARTISTS INFORMATION======================
     def prints(self):
-        print("_______________All Artists Details_______________")
-        for i in range(self.SSet.n):
-            name = self.artist_name[self.SSet.dense[i]]
-            print(f"-------id: {self.SSet.dense[i]}------")
-            print(f"{self.SSet.dense[i]} : {name}")
-            print("musics:")
-            self.search_on_songs(name,"aname")
-            print("--------------------")
-        print("_______________________END_______________________")
+        # print("_______________All Artists  Details_______________")
+        # for i in range(self.SSet.n):
+        #     name = self.artist_name[self.SSet.dense[i]]
+        #     print(f"-------id: {self.SSet.dense[i]}------")
+        #     print(f"{self.SSet.dense[i]} : {name}")
+        #     print("musics:")
+        #     self.search_on_songs(name,"aname")
+        #     print("--------------------")
+        # print("_______________________END_______________________")
+        
+        letter = "="*60
+        print(f"{letter}All Artists  Details{letter}")
+        self.SSet.showAll()
+        print(f"{letter}===================={letter}")
         
     #===========================CLEAR ALL INFORMATION==========================
     def cls(self):
         self.SSet.clear()
         # self.sparse.clear()
         # self.dense.clear()
-        self.artist_name.clear()
-        self.songs.clear()
+        # self.artist_name.clear()
+        # self.songs.clear()
         
         
     #===========================A AUXILIARY FUNCTION===========================

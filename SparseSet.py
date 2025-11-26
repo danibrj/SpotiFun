@@ -68,14 +68,20 @@ class SparseSet:
         for artist in self.dense:
             if artist is not None:
                 print(artist)
-                
-    def add_music_to_a_artist(self,music_name ,artist_name,year,rating,contents):
+    
+    def add_music_to_all_songs(self,music_name ,artist_name,year,rating,contents):
+        song = Song(music_name,self.all_songs.n +1,artist_name,year,rating,contents)
+        self.all_songs.push(song)
+        self.add_music_to_a_artist(artist_name,song)
+                   
+    def add_music_to_a_artist(self,artist_name,song):
         
         for artist in self.dense:
             if artist is not None and artist.artist_name == artist_name:
-                song = Song(music_name,len(artist.songs)+1,year,rating,contents)
+                # song = Song(music_name,len(artist.songs)+1,artist_name,year,rating,contents)
+                # song = self.all_songs[]
                 artist.insert_music(song)
-                self.all_songs.push(song)
+                # self.all_songs.push(song)
     
 # x = Artist("danial", 1)
 # x2 = Artist("ali", 2)

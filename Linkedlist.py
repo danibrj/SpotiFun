@@ -86,6 +86,16 @@ class Linkedlist:
             if i != self.n - 1:
                 current = current.next
         return years
+    
+    def print_sorting(self,years):
+        current = self.head
+        for i in range(self.n):
+            for _ in range(self.n):
+                if years[i] == current.value["year"]:
+                    print(current.value)
+                    break
+                current = current.next
+        
             
 # x = Linkedlist()
 # x.insert(2)

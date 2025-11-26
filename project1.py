@@ -1,6 +1,8 @@
 from Playlist import Playlist as PL
 from SparseSet import SparseSet as SpSet
 from Artist import Artist
+from Song import Song
+# from Stack import Stack
 class Spotifun:
     def __init__(self):
         # self.sparse = {} # for id's index
@@ -46,11 +48,16 @@ class Spotifun:
         # self.artist_name.pop(artist_id,None)
     #==============================ADD NEW  MUSIC==============================    
     def addms(self,music_name ,artist_name,year,rating,contents):
-        self.songs[len(self.songs)+1]= { "mname":music_name ,"aname":artist_name,"year":year,"rating":rating,"contents":contents}
+        # self.songs[len(self.songs)+1]= { "mname":music_name ,"aname":artist_name,"year":year,"rating":rating,"contents":contents}
+        
+        self.SSet.add_music_to_a_artist(music_name ,artist_name,year,rating,contents)
         
     #===============================FIND A MUSIC===============================
     def findms(self,music_name):
-        self.search_on_songs(music_name,"mname")
+        self.SSet.all_songs.found(music_name)
+        
+        
+        # self.search_on_songs(music_name,"mname")
         
     #==============================FIND  A ARTIST==============================
     def finds(self,artist_id):
@@ -67,20 +74,36 @@ class Spotifun:
         
     #============================WORD COUNT IN MUSIC===========================
     def countw(self,artist_id,music_id,word):
-        artist_name = self.artist_name[artist_id]
-        music_info = {}
-        for i in range(1,len(self.songs)+1):
-            if i == music_id and self.songs[i]["aname"] == artist_name:
-                music_info = self.songs[i]
-        x = music_info["contents"]
+        
+        artist = self.SSet.search_by_id(artist_id)
+        mus = None
+        for music in artist.songs:
+            if music.music_id == music_id:
+                mus = music
+        texts = mus.contents
         count = 0
-        for i in range(1,len(x)+1):
-            string = x[i]
+        for i in range(1,len(texts)+1):
+            string = texts[i]
             strs = string.strip().split()
             for i in range(len(strs)):
                 if strs[i] == word:
                     count += 1
         print(count)
+        
+        # artist_name = self.artist_name[artist_id]
+        # music_info = None
+        # for i in range(1,len(self.songs)+1):
+        #     if i == music_id and self.songs[i]["aname"] == artist_name:
+        #         music_info = self.songs[i]
+        # x = music_info["contents"]
+        # count = 0
+        # for i in range(1,len(x)+1):
+        #     string = x[i]
+        #     strs = string.strip().split()
+        #     for i in range(len(strs)):
+        #         if strs[i] == word:
+        #             count += 1
+        # print(count)
         
     #=============================ADD NEW PLAYLIST=============================
     def addp(self,playlist_id,playlist_name):
@@ -114,15 +137,22 @@ class Spotifun:
             
     #======================SEARCH A WORD ON SONG'S TEXT========================
     def searchw(self,artist_id,music_id,word):
-        artist = self.artist_name[artist_id]
-        target_music = {}
-        for i in range(1,len(self.songs)+1):
-            if self.songs[i]["aname"] == artist and i == music_id :
-                target_music = self.songs[i]
-        music_contents = target_music["contents"]
+        artist = self.SSet.search_by_id(artist_id)
+        mus = None
+        for music in artist.songs:
+            if music.music_id == music_id:
+                mus = music
+        texts = mus.contents
+        
+        # artist = self.artist_name[artist_id]
+        # target_music = {}
+        # for i in range(1,len(self.songs)+1):
+        #     if self.songs[i]["aname"] == artist and i == music_id :
+        #         target_music = self.songs[i]
+        # music_contents = target_music["contents"]
         count = 0
-        for i in range(1,len(music_contents)+1):
-            words = music_contents[i].strip().split()
+        for i in range(1,len(texts)+1):
+            words = texts[i].strip().split()
             for i in range(len(words)):
                 if words[i] != word:
                     count += 1

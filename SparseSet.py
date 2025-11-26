@@ -1,4 +1,6 @@
+from Song import Song
 from Artist import Artist
+from Stack import Stack
 class SparseSet:
     def __init__(self,maxValu,capasity):
         self.sparse = [0] * (maxValu + 1)
@@ -6,6 +8,9 @@ class SparseSet:
         self.capasity = capasity
         self.maxValue = maxValu
         self.n = 0
+        self.all_songs = Stack()
+    # def find_music_by_name(self,music_name):
+    
     #==============================SEARCH A ARTIST=============================    
     def search(self,value):
         if self.sparse[value.artist_id] < self.n and self.dense[self.sparse[value.artist_id]] == value:
@@ -29,6 +34,9 @@ class SparseSet:
     #==============================REMOVE A ARTIST=============================
     def delete(self,id): 
         artist = self.search_by_id(id)
+        if artist is None:
+            print("not found!!")
+            return
         if self.search(artist) == -1 :
             print("not found!!")
             return
@@ -53,10 +61,19 @@ class SparseSet:
         for artist in self.dense:
             if artist is not None and artist.artist_id == artist_id:
                 print(artist)
+                
     def showAll(self):
         for artist in self.dense:
             if artist is not None:
                 print(artist)
+                
+    def add_music_to_a_artist(self,music_name ,artist_name,year,rating,contents):
+        
+        for artist in self.dense:
+            if artist is not None and artist.artist_name == artist_name:
+                song = Song(music_name,len(artist.songs)+1,year,rating,contents)
+                artist.insert_music(song)
+                self.all_songs.push(song)
     
 # x = Artist("danial", 1)
 # x2 = Artist("ali", 2)

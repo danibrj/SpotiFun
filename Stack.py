@@ -18,5 +18,23 @@ class Stack:
         self.top = newNode
         self.n +=1
     
+    def found(self,music_name):
+        current = self.top
+        while current:
+            if current.value.music_name == music_name:
+                print(current.value)
+            current = current.next
     
+    def prints(self):
+        current = self.top
+        while current:
+            print(current.value)
+            current = current.next
     # def pop()
+
+# x = Stack()
+# x.push(1)
+# x.prints()
+# print("---")
+# x.push(2)
+# x.prints()

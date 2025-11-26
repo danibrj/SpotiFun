@@ -61,6 +61,8 @@ class SparseSet:
         for artist in self.dense:
             if artist is not None and artist.artist_id == artist_id:
                 print(artist)
+                return 
+        return None
                 
     def showAll(self):
         for artist in self.dense:
@@ -79,12 +81,14 @@ class SparseSet:
 # x2 = Artist("ali", 2)
 # y = SparseSet(100,100)
 # y.insert(x)
-# y.search_by_id2(1)
+# # y.search_by_id2(1)
 # print("-------")
 # y.insert(x2)
 # y.showAll()
 # print("-------")
+# y.search_by_id2(2)
+# y.add_music_to_a_artist("a","danial",2015,5,{1:"adsd sa"})
+# y.add_music_to_a_artist("b","danial",2013,5,{1:"adfsdfddf sa"})
 
-# y.delete(3)
-# y.showAll()
-
+# print("-------")
+# y.search_by_id2(3)

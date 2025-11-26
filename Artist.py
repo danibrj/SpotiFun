@@ -9,7 +9,7 @@ class Artist:
     
     
     def __str__(self):
-        return f"Artist: (name : '{self.artist_name}', id : {self.artist_id}\n{self.songs})"
+        return f"Artist: (name : '{self.artist_name}', id : {self.artist_id}\nMusics:\n{self.songs})"
 
     def __repr__(self):
         return self.__str__()

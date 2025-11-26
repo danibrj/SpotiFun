@@ -61,16 +61,10 @@ class Spotifun:
         
     #==============================FIND  A ARTIST==============================
     def finds(self,artist_id):
-        if self.SSet.search(artist_id) == -1:
-            print("not found")
-            return 
-        
-        name = self.artist_name[artist_id]
-        print("-------details------")
-        print(f"{artist_id} : {name}")
-        print("musics:")
-        self.search_on_songs(name,"aname")
-        print("--------------------")
+        letter = "="*60
+        print(f"{letter}details{letter}")
+        self.SSet.search_by_id2(artist_id)
+        print(f"{letter}======={letter}")
         
     #============================WORD COUNT IN MUSIC===========================
     def countw(self,artist_id,music_id,word):

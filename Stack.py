@@ -18,4 +18,5 @@ class Stack:
         self.top = newNode
         self.n +=1
     
+    
     # def pop()

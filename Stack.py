@@ -18,6 +18,14 @@ class Stack:
         self.top = newNode
         self.n +=1
     
+    def get_music_by_id(self,music_id):
+        current = self.top
+        while current:
+            if current.value.music_id == music_id:
+                return current.value
+            current = current.next
+        return None
+    
     def found(self,music_name):
         current = self.top
         while current:

@@ -20,13 +20,16 @@ class Linkedlist:
         
     #================================REMOVE VALUE==============================   
     def search_for_delete(self,music_id):
-        if music_id > self.n:
-            print("ERROR")
-            return
+        # if music_id > self.n:
+        #     print("ERROR")
+        #     return
         current = self.head
-        for _ in range(music_id - 1):
+        while current:
+            if current.value.music_id == music_id:
+                self.delete(current.value)
+                break
             current = current.next
-        self.delete(current.value)
+        
         
     def delete(self,input):
         current = self.head
@@ -58,40 +61,39 @@ class Linkedlist:
     #===============================SHOW ALL VALUE=============================    
     def showAll(self):
         current = self.head
-        count = 1
         while current:
-            print(f"{count} : {current.value}")
+            print(current.value)
             current = current.next
-            count += 1
+            
             
     #=============================SEARCH VALUE BY ID===========================
     def search_by_id(self,music_id):
-        if music_id > self.n:
-            print("ERROR")
-            return
+        # if music_id > self.n:
+        #     print("ERROR")
+        #     return
         current = self.head
-        count = 1
         while current:
-            if music_id == count:
+            if current.value.music_id == music_id:
                 print(current.value)
                 break
             current = current.next
-            count += 1
+            
         
     def get_years(self):
         years = [0] * self.n
         current = self.head
         for i in range(self.n):
-            years[i] = current.value["year"]
+            years[i] = current.value.year
             if i != self.n - 1:
                 current = current.next
         return years
     
     def print_sorting(self,years):
-        current = self.head
+        # current = self.head
         for i in range(self.n):
+            current = self.head
             for _ in range(self.n):
-                if years[i] == current.value["year"]:
+                if years[i] == current.value.year:
                     print(current.value)
                     break
                 current = current.next
@@ -99,5 +101,8 @@ class Linkedlist:
             
 # x = Linkedlist()
 # x.insert(2)
+# x.insert(3)
+# x.insert(24)
+
 # x.showAll()
-# print(x.leng)
+# # print(x.leng)

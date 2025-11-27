@@ -82,6 +82,9 @@ while True:
         music_id = int(cmd[2])
         mySpoti.delmp(playlist_id,music_id)
         
+    elif command == "showp":
+        playlist_id = int(cmd[1])
+        mySpoti.showp(playlist_id)
     #==========FINDS=========
     elif command == "finds":
         artist_id = int(cmd[1])

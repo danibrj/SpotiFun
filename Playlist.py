@@ -8,7 +8,7 @@ class Playlist:
     #=================================ADD MUSIC================================
     def insert(self,newMusic):
         self.playlist_songs.insert(newMusic)
-        print(f"{newMusic["mname"]} added to playlist successfully")
+        print(f"{newMusic.music_name} added to playlist successfully")
     
     #================================REMOVE MUSIC==============================
     def delete(self,music_id):
@@ -16,7 +16,7 @@ class Playlist:
         
     #========================SHOW ALL PLAYLIST INFORMATION=====================
     def showAllInfo(self):
-        print(f"----------Playlist << {self.playlist_name} >>----------")
+        print(f"==========Playlist << name: {self.playlist_name} | id: {self.playlist_id}>>==========")
         self.playlist_songs.showAll()
         
     #============================SEARCH MUSIC BY ID============================
@@ -28,7 +28,7 @@ class Playlist:
         self.years = self.playlist_songs.get_years()
         self.temp = [0] * len(self.years)
         self._merge_sort(0,len(self.years)-1)
-        
+        self.playlist_songs.print_sorting(self.years)
 
     def _merge_sort(self,left,right):
         if left >= right:

@@ -39,6 +39,31 @@ class Stack:
             print(current.value)
             current = current.next
     # def pop()
+    def get_max(self):
+        current = self.top
+        max = -1
+        while current:
+            if current.value.year > max:
+                max = current.value.year
+            current = current.next
+            
+        while current:
+            if current.value.year == max:
+                return current.value
+            current = current.next
+    
+    def get_min(self):
+        current = self.top
+        min = 999
+        while current:
+            if current.value.year < min:
+                min = current.value.year
+            current = current.next
+            
+        while current:
+            if current.value.year == min:
+                return current.value
+            current = current.next
 
 # x = Stack()
 # x.push(1)

@@ -207,6 +207,13 @@ class Spotifun:
         for i in range(1,len(self.playlists)+1):
             if self.playlists[i].playlist_id == playlist_id:
                 self.playlists[i].merge_by_year()
+    
+    def get_max_rated(self):
+        self.SSet.print_max()
+        
+    def get_min_rated(self):
+        self.SSet.print_min()
+        
     # # a auxiliary function       
     # def contains(self,artist_id):
     #     if artist_id not in self.sparse:

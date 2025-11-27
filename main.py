@@ -81,11 +81,21 @@ while True:
         playlist_id = int(cmd[1])
         music_id = int(cmd[2])
         mySpoti.delmp(playlist_id,music_id)
-        
+    
+    #==========showp==========    
     elif command == "showp":
         playlist_id = int(cmd[1])
         mySpoti.showp(playlist_id)
-    #==========FINDS=========
+       
+    #==========get_max_rated==========
+    elif command == "get_max_rated":
+        mySpoti.get_max_rated()
+    
+    #==========get_min_rated==========
+    elif command == "get_min_rated":
+        mySpoti.get_min_rated()
+        
+    #==========FINDS==========
     elif command == "finds":
         artist_id = int(cmd[1])
         mySpoti.finds(artist_id)

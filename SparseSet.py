@@ -82,6 +82,16 @@ class SparseSet:
                 # song = self.all_songs[]
                 artist.insert_music(song)
                 # self.all_songs.push(song)
+                
+    def print_max(self):
+        music = self.all_songs.get_max()
+        print("best music is : ")
+        print(music)
+    
+    def print_min(self):
+        music = self.all_songs.get_min()
+        print("worst music is : ")
+        print(music)
     
 # x = Artist("danial", 1)
 # x2 = Artist("ali", 2)

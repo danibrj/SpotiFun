@@ -21,8 +21,8 @@ while True:
     elif command == "addms":
         music_name = cmd[1]
         artist_name = input("> ")
-        year = input("> ")
-        rating = input("> ")
+        year = int(input("> "))
+        rating = int(input("> "))
         contents = {}
         i = 1
         while True:

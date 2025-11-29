@@ -8,6 +8,6 @@ class Song:
         self.contents =contents
     
     def __str__(self):
-        return f"Music: (name: '{self.music_name}',id: {self.music_id} ,artist: '{self.artist_name}' ,year: {self.year} ,contents: {self.contents})"
+        return f"Music: (name: '{self.music_name}',id: {self.music_id} ,artist: '{self.artist_name}' ,year: {self.year},rating: {self.rating} ,contents: {self.contents})"
     def __repr__(self):
         return self.__str__()

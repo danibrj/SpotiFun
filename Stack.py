@@ -41,6 +41,8 @@ class Stack:
             current = current.next
         
     def search_for_undo(self):
+        if self.count == self.n:
+            self.count = 0
         current = self.top
         
         for _ in range(self.count):
@@ -51,14 +53,15 @@ class Stack:
     # def pop()
     def get_max(self):
         current = self.top
-        max = -1
+        max = -999
         while current:
-            if current.value.year > max:
-                max = current.value.year
+            if current.value.rating > max:
+                max = current.value.rating
             current = current.next
             
+        current = self.top
         while current:
-            if current.value.year == max:
+            if current.value.rating == max:
                 return current.value
             current = current.next
     
@@ -66,12 +69,13 @@ class Stack:
         current = self.top
         min = 999
         while current:
-            if current.value.year < min:
-                min = current.value.year
+            if current.value.rating < min:
+                min = current.value.rating
             current = current.next
-            
+        
+        current = self.top    
         while current:
-            if current.value.year == min:
+            if current.value.rating == min:
                 return current.value
             current = current.next
 

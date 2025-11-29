@@ -86,6 +86,16 @@ while True:
     elif command == "showp":
         playlist_id = int(cmd[1])
         mySpoti.showp(playlist_id)
+    
+    
+    elif command == "playm":
+        artist_id = int(cmd[1])
+        music_id = int(cmd[2])
+        mySpoti.playm(artist_id,music_id)
+    
+        
+    elif command == "undo_playm":
+        mySpoti.undo_playm()
        
     #==========get_max_rated==========
     elif command == "get_max_rated":

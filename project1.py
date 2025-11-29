@@ -2,12 +2,14 @@ from Playlist import Playlist as PL
 from SparseSet import SparseSet as SpSet
 from Artist import Artist
 from Song import Song
+from SongPlayHistory import SongPlayHistory as sph
 # from Stack import Stack
 class Spotifun:
     def __init__(self):
         # self.sparse = {} # for id's index
         # self.dense = [] # for ids
         self.SSet = SpSet(100,100)
+        self.Sh = sph()
         # self.artist_name = {} # for id's name
         # self.songs = {}
         self.playlists = {}
@@ -207,6 +209,15 @@ class Spotifun:
         for i in range(1,len(self.playlists)+1):
             if self.playlists[i].playlist_id == playlist_id:
                 self.playlists[i].merge_by_year()
+    
+    
+    def playm(self,artist_id,music_id):
+        artist = self.SSet.search_by_id(artist_id)
+        music = artist.songs.get_music_by_id(music_id)
+        self.Sh.play_song(music)
+        
+    def undo_playm(self):
+        self.Sh.show_undo()
     
     def get_max_rated(self):
         self.SSet.print_max()

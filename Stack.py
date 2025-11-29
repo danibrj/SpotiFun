@@ -7,6 +7,7 @@ class Stack:
     def __init__(self):
         self.top = None
         self.n = 0
+        self.count = 0
     
     def push(self,value):
         if self.n == 100:
@@ -38,6 +39,15 @@ class Stack:
         while current:
             print(current.value)
             current = current.next
+        
+    def search_for_undo(self):
+        current = self.top
+        
+        for _ in range(self.count):
+            current= current.next
+        
+        self.count += 1
+        return current.value
     # def pop()
     def get_max(self):
         current = self.top

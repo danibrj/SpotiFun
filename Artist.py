@@ -1,11 +1,12 @@
+from Stack import Stack
 class Artist:
     def __init__(self,artist_name,artist_id):
         self.artist_name = artist_name
         self.artist_id = artist_id
-        self.songs = []
+        self.songs = Stack()
     
     def insert_music(self,song):
-        self.songs.append(song)
+        self.songs.push(song)
     
     
     def __str__(self):

@@ -19,7 +19,7 @@ class Stack:
         self.top = newNode
         self.n +=1
     
-    def get_music_by_id(self,music_id):
+    def get_music_by_id(self,music_id):#O(n)
         current = self.top
         while current:
             if current.value.music_id == music_id:
@@ -27,7 +27,7 @@ class Stack:
             current = current.next
         return None
     
-    def found(self,music_name):
+    def found(self,music_name):# O(n)
         current = self.top
         while current:
             if current.value.music_name == music_name:
@@ -78,6 +78,16 @@ class Stack:
             if current.value.rating == min:
                 return current.value
             current = current.next
+    
+    def __str__(self):
+        items = [None] * self.n
+        current = self.top
+        i = 0
+        while current:
+            items[i] = (str(current.value))
+            current = current.next
+            i += 1
+        return " | ".join(items)
 
 # x = Stack()
 # x.push(1)

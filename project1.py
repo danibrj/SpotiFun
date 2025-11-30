@@ -216,7 +216,7 @@ class Spotifun:
         music = artist.songs.get_music_by_id(music_id)
         self.Sh.play_song(music)
         
-    def undo_playm(self):
+    def undo_playm(self):#O(1)
         self.Sh.show_undo()
     
     def get_max_rated(self):

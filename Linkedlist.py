@@ -6,7 +6,7 @@ class Linkedlist:
     def __init__(self):
         self.head = None
         self.n = 0
-    #=================================ADD VALUE================================
+    #=================================ADD VALUE================================O(1)
     def insert(self,input):
         newNode = Node(input)
         self.n += 1
@@ -90,14 +90,22 @@ class Linkedlist:
     
     def print_sorting(self,years):
         # current = self.head
-        for i in range(self.n):
-            current = self.head
-            for _ in range(self.n):
-                if years[i] == current.value.year:
-                    print(current.value)
-                    break
-                current = current.next
+        # for i in range(self.n):
+        #     current = self.head
+        #     for _ in range(self.n):
+        #         if years[i] == current.value.year:
+        #             print(current.value)
+        #             break
+        #         current = current.next
         
+        current = self.head
+        values = {}
+        while current:
+            values[current.value.year] = current.value
+            current = current.next
+        
+        for year in years:
+            print(values[year])
             
 # x = Linkedlist()
 # x.insert(2)

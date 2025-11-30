@@ -3,7 +3,7 @@ from Artist import Artist
 from Stack import Stack
 class SparseSet:
     def __init__(self,maxValu,capasity):
-        self.sparse = [0] * (maxValu + 1)
+        self.sparse = [-1] * (maxValu + 1)
         self.dense = [None] * capasity
         self.capasity = capasity
         self.maxValue = maxValu
@@ -17,7 +17,7 @@ class SparseSet:
             return self.sparse[value.artist_id] 
         return -1
      
-    #==============================ADD NEW ARTIST==============================
+    #==============================ADD NEW ARTIST==============================O(1)
     def insert(self,value):
         if self.n >= self.capasity:
             return
@@ -31,7 +31,7 @@ class SparseSet:
         self.sparse[value.artist_id] = self.n
         
         self.n += 1
-    #==============================REMOVE A ARTIST=============================
+    #==============================REMOVE A ARTIST=============================O(1)
     def delete(self,id): 
         artist = self.search_by_id(id)
         if artist is None:
@@ -52,17 +52,24 @@ class SparseSet:
     def clear(self):
         self.n = 0
     
-    def search_by_id(self,artist_id):
-        for artist in self.dense:
-            if artist is not None and artist.artist_id == artist_id:
-                return artist
-        return None
-    def search_by_id2(self,artist_id):
-        for artist in self.dense:
-            if artist is not None and artist.artist_id == artist_id:
-                print(artist)
-                return 
-        return None
+    def search_by_id(self,artist_id):#O(1)
+        # for artist in self.dense:
+        #     if artist is not None and artist.artist_id == artist_id:
+        #         return artist
+        # return None
+        index = self.sparse[artist_id]
+        return self.dense[index]
+    
+    def search_by_id2(self,artist_id):#O(1)
+        # for artist in self.dense:
+        #     if artist is not None and artist.artist_id == artist_id:
+        #         print(artist)
+        #         return 
+        # return None
+        index = self.sparse[artist_id]
+        artist = self.dense[index]
+        print(artist)
+        return 
                 
     def showAll(self):
         for artist in self.dense:
@@ -75,6 +82,8 @@ class SparseSet:
         self.add_music_to_a_artist(artist_name,song)
                    
     def add_music_to_a_artist(self,artist_name,song):
+        
+        
         
         for artist in self.dense:
             if artist is not None and artist.artist_name == artist_name:
@@ -93,18 +102,23 @@ class SparseSet:
         print("worst music is : ")
         print(music)
     
-# x = Artist("danial", 1)
-# x2 = Artist("ali", 2)
-# y = SparseSet(100,100)
-# y.insert(x)
-# # y.search_by_id2(1)
-# print("-------")
-# y.insert(x2)
-# y.showAll()
-# print("-------")
-# y.search_by_id2(2)
-# y.add_music_to_a_artist("a","danial",2015,5,{1:"adsd sa"})
-# y.add_music_to_a_artist("b","danial",2013,5,{1:"adfsdfddf sa"})
+x = Artist("danial", 1)
+x2 = Artist("ali", 2)
+y = SparseSet(100,100)
+y.insert(x)
+# y.search_by_id2(1)
+print("-------")
+y.insert(x2)
+y.showAll()
+print("-------")
+y.search_by_id2(2)
+y.add_music_to_all_songs("a","danial",2015,5,{1:"adsd sa"})
+y.add_music_to_all_songs("b","ali",2013,5,{1:"adfsdfddf sa"})
 
-# print("-------")
-# y.search_by_id2(3)
+print("-------")
+# y.delete(2)
+y.showAll()
+print("------")
+# y.search_by_id2(2)
+
+# print(y.all_songs)

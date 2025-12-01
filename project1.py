@@ -224,7 +224,16 @@ class Spotifun:
         
     def get_min_rated(self):
         self.SSet.print_min()
-        
+    
+    def delms(self,artist_id,music_id):
+        artist = self.SSet.search_by_id(artist_id)
+        music = artist.songs.get_music_by_id(music_id)
+        artist.deletion(music)
+        self.SSet.all_songs.delete(music)
+        for i in range(1,len(self.playlists)+1):
+            if self.playlists[i].playlist_songs.search(music):
+                self.playlists[i].delete(music_id)
+        self.Sh.history_songs.delete(music)
     # # a auxiliary function       
     # def contains(self,artist_id):
     #     if artist_id not in self.sparse:

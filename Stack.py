@@ -19,6 +19,20 @@ class Stack:
         self.top = newNode
         self.n +=1
     
+    def delete(self,value):
+        current = self.top
+        prev = None
+        while current:
+            if current.value == value:
+                if current == self.top:
+                    self.top = current.next
+                else:
+                    prev.next = current.next
+                self.n -= 1
+            prev = current
+            current = current.next
+            
+            
     def get_music_by_id(self,music_id):#O(n)
         current = self.top
         while current:
@@ -44,6 +58,8 @@ class Stack:
         if self.count == self.n:
             self.count = 0
         current = self.top
+        if current is None:
+            return
         
         for _ in range(self.count):
             current= current.next
@@ -91,7 +107,9 @@ class Stack:
 
 # x = Stack()
 # x.push(1)
-# x.prints()
-# print("---")
 # x.push(2)
+# x.push(3)
+# x.push(4)
+# print("---")
+# x.delete(3)
 # x.prints()

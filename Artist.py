@@ -8,6 +8,9 @@ class Artist:
     def insert_music(self,song):
         self.songs.push(song)
     
+    def deletion(self,song):
+        self.songs.delete(song)
+    
     
     def __str__(self):
         return f"Artist: (name : '{self.artist_name}', id : {self.artist_id}\nMusics:\n{self.songs})"

@@ -72,18 +72,25 @@ class Spotifun:
     def countw(self,artist_id,music_id,word):
         
         artist = self.SSet.search_by_id(artist_id)
-        mus = None
-        for music in artist.songs:
-            if music.music_id == music_id:
-                mus = music
+        mus = artist.songs.get_music_by_id(music_id)
+        
         texts = mus.contents
         count = 0
+        
+        k = 0
+        # wi = 0
+        line = ""
         for i in range(1,len(texts)+1):
-            string = texts[i]
-            strs = string.strip().split()
-            for i in range(len(strs)):
-                if strs[i] == word:
+            line += texts[i] + " "
+            
+        for _ in range(len(line)):
+            if line[k] == word[0]:
+                x = line[k:k+len(word)]
+                if x == word:
                     count += 1
+                    
+            k += 1
+            
         print(count)
         
         # artist_name = self.artist_name[artist_id]
@@ -135,10 +142,8 @@ class Spotifun:
     #======================SEARCH A WORD ON SONG'S TEXT========================
     def searchw(self,artist_id,music_id,word):
         artist = self.SSet.search_by_id(artist_id)
-        mus = None
-        for music in artist.songs:
-            if music.music_id == music_id:
-                mus = music
+        mus = artist.songs.get_music_by_id(music_id)
+        
         texts = mus.contents
         
         # artist = self.artist_name[artist_id]
@@ -147,15 +152,26 @@ class Spotifun:
         #     if self.songs[i]["aname"] == artist and i == music_id :
         #         target_music = self.songs[i]
         # music_contents = target_music["contents"]
-        count = 0
+        k = 0
+        # wi = 0
+        line = ""
         for i in range(1,len(texts)+1):
-            words = texts[i].strip().split()
-            for i in range(len(words)):
-                if words[i] != word:
-                    count += 1
-                else:
-                    print(count + 1)
-                    return 
+            line += texts[i] + " "
+            
+        for _ in range(len(line)):
+            if line[k] == word[0]:
+                x = line[k:k+len(word)]
+                if x == word:
+                    print(f"{word} is from index <{k}> to <{k+len(word)-1}>")
+                    return
+            k += 1
+                        
+            # for j in range(len(words)):
+            #     if words[j] != word:
+            #         count += 1
+            #     else:
+            #         print(count + 1)
+            #         return 
         
     #=========================SEARCH MUSIC IN PLAYLIST=========================
     def searchmp(self,playlist_id,music_id):

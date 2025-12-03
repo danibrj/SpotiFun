@@ -32,6 +32,22 @@ class Stack:
             prev = current
             current = current.next
             
+    def delete_all_info(self):
+        self.top = None
+    
+    def delete_sogns_of_one_artist(self,artist_name):
+        current = self.top
+        prev = None
+        while current:
+            if current.value.artist_name == artist_name:
+                if current == self.top:
+                    self.top = current.next
+                else:
+                    prev.next = current.next
+                self.n -= 1
+            else:
+                prev = current
+            current = current.next
             
     def get_music_by_id(self,music_id):#O(n)
         current = self.top
@@ -96,14 +112,12 @@ class Stack:
             current = current.next
     
     def __str__(self):
-        items = [None] * self.n
+        items = ""
         current = self.top
-        i = 0
         while current:
-            items[i] = (str(current.value))
+            items += (str(current.value)) + " | "
             current = current.next
-            i += 1
-        return " | ".join(items)
+        return items
 
 # x = Stack()
 # x.push(1)
@@ -112,4 +126,7 @@ class Stack:
 # x.push(4)
 # print("---")
 # x.delete(3)
+# x.prints()
+# x.delete_all_info()
+# print("---")
 # x.prints()

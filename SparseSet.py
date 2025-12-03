@@ -46,8 +46,11 @@ class SparseSet:
         self.dense[value_index] = last_element
         self.sparse[last_element.artist_id] = value_index
         self.dense[self.n - 1] = None
-        self.sparse[artist.artist_id] = 0
+        self.sparse[artist.artist_id] = -1
         self.n -= 1
+        artist.songs.delete_all_info()
+        self.all_songs.delete_sogns_of_one_artist(artist.artist_name)
+        
     #===========================CLEAR ALL INFORMATION==========================
     def clear(self):
         self.n = 0
@@ -102,23 +105,36 @@ class SparseSet:
         print("worst music is : ")
         print(music)
     
-# x = Artist("danial", 1)
-# x2 = Artist("ali", 2)
-# y = SparseSet(100,100)
-# y.insert(x)
-# # y.search_by_id2(1)
-# print("-------")
-# y.insert(x2)
-# y.showAll()
-# print("-------")
+x = Artist("danial", 1)
+x2 = Artist("ali", 2)
+y = SparseSet(100,100)
+y.insert(x)
+# y.search_by_id2(1)
+print("-------")
+y.insert(x2)
+y.showAll()
+print("-------")
 # y.search_by_id2(2)
-# y.add_music_to_all_songs("a","danial",2015,5,{1:"adsd sa"})
-# y.add_music_to_all_songs("b","ali",2013,5,{1:"adfsdfddf sa"})
+y.add_music_to_all_songs("a","danial",2015,5,{1:"adsd sa"})
+y.add_music_to_all_songs("b","danial",2013,5,{1:"adfsdfddf sa"})
+y.add_music_to_all_songs("c","ali",2013,5,{1:"adfsdfddf sa"})
+y.add_music_to_all_songs("d","danial",2013,5,{1:"adfsdfddf sa"})
 
-# print("-------")
+y.search_by_id2(1)
+print("-------")
 # # y.delete(2)
 # y.showAll()
 # print("------")
 # y.search_by_id2(2)
 
-# print(y.all_songs)
+print(y.all_songs)
+print("---------")
+y.delete(1)
+print(y.dense)
+print(y.sparse)
+print("**************")
+y.search_by_id2(1)
+print(y.all_songs)
+
+
+

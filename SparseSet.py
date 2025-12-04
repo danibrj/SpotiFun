@@ -1,6 +1,7 @@
 from Song import Song
 from Artist import Artist
 from Stack import Stack
+from Queue import Queue
 class SparseSet:
     def __init__(self,maxValue,capasity):
         self.sparse = [-1] * (maxValue + 1)
@@ -8,7 +9,7 @@ class SparseSet:
         self.capasity = capasity
         self.maxValue = maxValue
         self.n = 0
-        self.all_songs = Stack()
+        self.all_songs = Queue()
     # def find_music_by_name(self,music_name):
     
     #==============================SEARCH A ARTIST=============================    
@@ -82,8 +83,8 @@ class SparseSet:
                 print(artist)
     
     def add_music_to_all_songs(self,music_name ,artist_name,year,rating,contents):
-        song = Song(music_name,self.all_songs.n +1,artist_name,year,rating,contents)
-        self.all_songs.push(song)
+        song = Song(music_name,self.all_songs.size +1,artist_name,year,rating,contents)
+        self.all_songs.enqueue(song)
         self.add_music_to_a_artist(artist_name,song)
                    
     def add_music_to_a_artist(self,artist_name,song):
@@ -107,39 +108,39 @@ class SparseSet:
         print("worst music is : ")
         print(music)
     
-# x = Artist("danial", 1)
-# x2 = Artist("ali", 2)
-# x3 = Artist("df", 3)
+x = Artist("danial", 1)
+x2 = Artist("ali", 2)
+x3 = Artist("df", 3)
 
-# y = SparseSet(100,100)
-# y.insert(x)
-# # y.search_by_id2(1)
-# print("-------")
-# y.insert(x2)
-# y.insert(x3)
-# y.showAll()
-# print("-------")
-# # y.search_by_id2(2)
-# y.add_music_to_all_songs("a","danial",2015,5,{1:"adsd sa"})
-# y.add_music_to_all_songs("b","ali",2014,8,{1:"adfsdf777777ddf sa"})
-# y.add_music_to_all_songs("c","df",2013,5,{1:"adfsdfddf sa"})
-# y.add_music_to_all_songs("d","danial",2013,5,{1:"adfsdfddf sa"})
-
+y = SparseSet(100,100)
+y.insert(x)
 # y.search_by_id2(1)
-# print("-------")
-# # # y.delete(2)
-# # y.showAll()
-# # print("------")
-# # y.search_by_id2(2)
+print("-------")
+y.insert(x2)
+y.insert(x3)
+y.showAll()
+print("-------")
+# y.search_by_id2(2)
+y.add_music_to_all_songs("a","danial",2015,5,{1:"adsd sa"})
+y.add_music_to_all_songs("b","ali",2014,8,{1:"adfsdf777777ddf sa"})
+y.add_music_to_all_songs("c","df",2013,5,{1:"adfsdfddf sa"})
+y.add_music_to_all_songs("d","danial",2013,5,{1:"adfsdfddf sa"})
 
-# print(y.all_songs)
-# print("---------")
-# y.delete(2)
-# print(y.dense)
-# print(y.sparse)
-# print("**************")
-# # y.search_by_id2(1)
-# print(y.all_songs)
+y.search_by_id2(1)
+print("-------")
+# # y.delete(2)
+# y.showAll()
+# print("------")
+# y.search_by_id2(2)
+
+print(y.all_songs)
+print("---------")
+y.delete(1)
+print(y.dense)
+print(y.sparse)
+print("**************")
+# y.search_by_id2(1)
+print(y.all_songs)
 
 
 

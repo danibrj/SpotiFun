@@ -134,7 +134,7 @@ class Spotifun:
     #===========================ADD NUSIC TO PLAYLIST==========================
     def addmp(self,music_id,playlist_id):
         x = 0
-        for i in range(1,self.SSet.all_songs.n+1):
+        for i in range(1,self.SSet.all_songs.size+1):
             if i == music_id:
                 x = 1
                 break

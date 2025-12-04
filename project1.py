@@ -99,21 +99,31 @@ class Spotifun:
             k += 1
             
         print(count)
+
+    
+     #======================SEARCH A WORD ON SONG'S TEXT========================
+    def searchw(self,artist_id,music_id,word):
+        artist = self.SSet.search_by_id(artist_id)
+        mus = artist.songs.get_music_by_id(music_id)
         
-        # artist_name = self.artist_name[artist_id]
-        # music_info = None
-        # for i in range(1,len(self.songs)+1):
-        #     if i == music_id and self.songs[i]["aname"] == artist_name:
-        #         music_info = self.songs[i]
-        # x = music_info["contents"]
-        # count = 0
-        # for i in range(1,len(x)+1):
-        #     string = x[i]
-        #     strs = string.strip().split()
-        #     for i in range(len(strs)):
-        #         if strs[i] == word:
-        #             count += 1
-        # print(count)
+        texts = mus.contents
+        
+        k = 0
+        
+        line = ""
+        for i in range(1,len(texts)+1):
+            line += texts[i] + " "
+            
+        for _ in range(len(line)):
+            if line[k] == word[0]:
+                x = line[k:k+len(word)]
+                if x == word:
+                    print(f"{word} is from index <{k}> to <{k+len(word)-1}>")
+                    return
+            k += 1
+                        
+
+        
         
     #=============================ADD NEW PLAYLIST=============================
     def addp(self,playlist_id,playlist_name):
@@ -146,40 +156,7 @@ class Spotifun:
                 break
             
             
-    #======================SEARCH A WORD ON SONG'S TEXT========================
-    def searchw(self,artist_id,music_id,word):
-        artist = self.SSet.search_by_id(artist_id)
-        mus = artist.songs.get_music_by_id(music_id)
-        
-        texts = mus.contents
-        
-        # artist = self.artist_name[artist_id]
-        # target_music = {}
-        # for i in range(1,len(self.songs)+1):
-        #     if self.songs[i]["aname"] == artist and i == music_id :
-        #         target_music = self.songs[i]
-        # music_contents = target_music["contents"]
-        k = 0
-        # wi = 0
-        line = ""
-        for i in range(1,len(texts)+1):
-            line += texts[i] + " "
-            
-        for _ in range(len(line)):
-            if line[k] == word[0]:
-                x = line[k:k+len(word)]
-                if x == word:
-                    print(f"{word} is from index <{k}> to <{k+len(word)-1}>")
-                    return
-            k += 1
-                        
-            # for j in range(len(words)):
-            #     if words[j] != word:
-            #         count += 1
-            #     else:
-            #         print(count + 1)
-            #         return 
-        
+   
     #=========================SEARCH MUSIC IN PLAYLIST=========================
     def searchmp(self,playlist_id,music_id):
         for i in range(1,len(self.playlists)+1):

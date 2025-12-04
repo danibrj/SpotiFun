@@ -8,5 +8,5 @@ class SongPlayHistory:
         self.history_songs.push(song)
     
     def show_undo(self):
-        target_music = self.history_songs.search_for_undo()
-        print(target_music)
+        self.history_songs.search_for_undo()
+        

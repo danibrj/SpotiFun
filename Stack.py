@@ -21,6 +21,10 @@ class Stack:
     
     def delete(self,value):
         current = self.top
+        if value == self.top.value:
+            self.top = current.next
+            return
+        
         prev = None
         while current:
             if current.value == value:
@@ -29,7 +33,8 @@ class Stack:
                 else:
                     prev.next = current.next
                 self.n -= 1
-            prev = current
+            else:
+                prev = current
             current = current.next
             
     def delete_all_info(self):
@@ -125,8 +130,8 @@ class Stack:
 # x.push(3)
 # x.push(4)
 # print("---")
-# x.delete(3)
+# x.delete(2)
 # x.prints()
-# x.delete_all_info()
+# # x.delete_all_info()
 # print("---")
 # x.prints()

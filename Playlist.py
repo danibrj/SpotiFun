@@ -26,40 +26,31 @@ class Playlist:
         
     def merge_by_year(self):
         self.years = self.playlist_songs.get_years() # O(n)
-        self.temp = [0] * len(self.years)
-        self._merge_sort(0,len(self.years)-1)
+        # self.temp = [0] * len(self.years)
+        self._counting_sort()
         self.playlist_songs.print_sorting(self.years)
 
-    def _merge_sort(self,left,right):
-        if left >= right:
-            return 
-        mid = (left + right) // 2
-        self._merge_sort(left,mid)
-        self._merge_sort(mid+1 ,right)
+    def _counting_sort(self):
+        if not self.years:
+            return
 
-        i = left
-        j = mid +1
-        k = left
-        while i <= mid and j <= right:
-            if self.years[i][0] <= self.years[j][0]:
-                self.temp[k] = self.years[i]
-                i += 1
-            else:
-                self.temp[k] = self.years[j]
-                j += 1
-            k += 1
+        min_year = min(self.years)
+        max_year = max(self.years)
+        
+        count = [0] * (max_year - min_year + 1)
+        
+        for y in self.years:
+            count[y - min_year] += 1
+        
+        for i in range(1, len(count)):
+            count[i] += count[i - 1]
+        
+        output = [0] * len(self.years)
 
-        while i <= mid:
-            self.temp[k] = self.years[i]
-            i += 1
-            k += 1
-        while j <= right:
-            self.temp[k] = self.years[j]
-            j += 1
-            k += 1
-            
-        for i in range(left,right+1):
-            self.years[i] = self.temp[i]
-    # def merge(self,years):
+        for i in range(len(self.years) - 1, -1, -1):
+            year = self.years[i]
+            idx = count[year - min_year] - 1
+            output[idx] = year
+            count[year - min_year] -= 1
         
-        
+        self.years = output

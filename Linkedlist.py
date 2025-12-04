@@ -77,6 +77,20 @@ class Linkedlist:
                 print(current.value)
                 break
             current = current.next
+    
+    def delete_sogns_of_one_artist_from_playlist(self,artist_name):
+        current = self.head
+        prev = None
+        while current:
+            if current.value.artist_name == artist_name:
+                if prev:
+                    prev.next = current.next
+                else:
+                    self.head = current.next
+                self.n -= 1
+            else:
+                prev = current
+            current = current.next
             
         
     def get_years(self):

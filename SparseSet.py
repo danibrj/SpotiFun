@@ -2,11 +2,11 @@ from Song import Song
 from Artist import Artist
 from Stack import Stack
 class SparseSet:
-    def __init__(self,maxValu,capasity):
-        self.sparse = [-1] * (maxValu + 1)
+    def __init__(self,maxValue,capasity):
+        self.sparse = [-1] * (maxValue + 1)
         self.dense = [None] * capasity
         self.capasity = capasity
-        self.maxValue = maxValu
+        self.maxValue = maxValue
         self.n = 0
         self.all_songs = Stack()
     # def find_music_by_name(self,music_name):
@@ -53,7 +53,9 @@ class SparseSet:
         
     #===========================CLEAR ALL INFORMATION==========================
     def clear(self):
-        self.n = 0
+        self.sparse = [-1] * (self.maxValue + 1)
+        self.dense = [None] * self.capasity
+        self.n = 0    
     
     def search_by_id(self,artist_id):#O(1)
         # for artist in self.dense:

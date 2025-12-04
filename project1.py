@@ -45,6 +45,13 @@ class Spotifun:
         # self.dense.pop()
         # #delete id index
         # self.sparse.pop(artist_id,None)
+        
+        
+        artist = self.SSet.search_by_id(artist_id)
+        self.Sh.history_songs.delete_sogns_of_one_artist(artist.artist_name)
+        for i in range(1,len(self.playlists)+1):
+            self.playlists[i].playlist_songs.delete_sogns_of_one_artist_from_playlist(artist.artist_name)
+        
         self.SSet.delete(artist_id)
         #delete id name
         # self.artist_name.pop(artist_id,None)
@@ -204,7 +211,11 @@ class Spotifun:
         
     #===========================CLEAR ALL INFORMATION==========================
     def cls(self):
+        
+        self.SSet.all_songs.delete_all_info()
+        self.Sh.history_songs.delete_all_info()
         self.SSet.clear()
+        self.playlists = {}
         # self.sparse.clear()
         # self.dense.clear()
         # self.artist_name.clear()

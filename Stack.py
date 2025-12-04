@@ -130,7 +130,7 @@ class Stack:
 # x.push(3)
 # x.push(4)
 # print("---")
-# x.delete(2)
+# x.delete(5)
 # x.prints()
 # # x.delete_all_info()
 # print("---")

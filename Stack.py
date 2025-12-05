@@ -39,6 +39,40 @@ class Stack:
     def delete_all_info(self):
         self.values = []
         self.n = 0
+    
+    def delet_songs_from_playlists(self,artist_name):
+        for playlist in self.values:
+            playlist.playlist_songs.delete_sogns_of_one_artist_from_playlist(artist_name)
+    
+    def add_song_to_playlist(self,music,playlist_id):
+        for playlist in self.values:
+            if playlist.playlist_id == playlist_id:
+                playlist.insert(music)
+    def show_all_from_one_playlist(self,playlist_id):
+        for playlist in self.values:
+            if playlist.playlist_id == playlist_id:
+                playlist.showAllInfo()
+                break
+    
+    def search_song_from_one_playlist(self,playlist_id,music_id):
+        for playlist in self.values:
+            if playlist.playlist_id == playlist_id:
+                playlist.search(music_id)
+    
+    def delete_song_from_one_playlist(self,playlist_id,music_id):
+        for playlist in self.values:
+            if playlist.playlist_id == playlist_id:
+                playlist.delete(music_id)
+                
+    def delete_song_of_all_playlist(self,music,music_id):
+        for playlist in self.values:
+            if playlist.playlist_songs.search(music):
+                playlist.delete(music_id)
+                                            
+    def show_sorted(self,playlist_id):
+        for playlist in self.values:
+            if playlist.playlist_id == playlist_id:
+                playlist.merge_by_year()
                 
     def get_music_by_id(self,music_id):#O(n)
         for data in self.values:

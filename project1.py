@@ -3,6 +3,7 @@ from SparseSet import SparseSet as SpSet
 from Artist import Artist
 from Song import Song
 from SongPlayHistory import SongPlayHistory as sph
+from Stack import Stack
 # from Stack import Stack
 class Spotifun:
     def __init__(self):
@@ -12,7 +13,7 @@ class Spotifun:
         self.Sh = sph()
         # self.artist_name = {} # for id's name
         # self.songs = {}
-        self.playlists = {}
+        self.playlists = Stack()
         
     #==============================ADD NEW ARTIST==============================
     def adds(self,artist_id,artist_name):
@@ -49,8 +50,7 @@ class Spotifun:
         
         artist = self.SSet.search_by_id(artist_id)
         self.Sh.history_songs.delete_sogns_of_one_artist(artist.artist_name)
-        for i in range(1,len(self.playlists)+1):
-            self.playlists[i].playlist_songs.delete_sogns_of_one_artist_from_playlist(artist.artist_name)
+        self.playlists.delet_songs_from_playlists(artist.artist_name)
         
         self.SSet.delete(artist_id)
         #delete id name
@@ -129,7 +129,7 @@ class Spotifun:
     def addp(self,playlist_id,playlist_name):
         new_playlist = PL(playlist_id,playlist_name)
         
-        self.playlists[len(self.playlists)+1] = new_playlist
+        self.playlists.push(new_playlist)
     
     #===========================ADD NUSIC TO PLAYLIST==========================
     def addmp(self,music_id,playlist_id):
@@ -144,30 +144,20 @@ class Spotifun:
             
         music = self.SSet.all_songs.get_music_by_id(music_id)
         
-        for i in range(1,len(self.playlists)+1):
-            if self.playlists[i].playlist_id == playlist_id:
-                self.playlists[i].insert(music)
+        self.playlists.add_song_to_playlist(music,playlist_id)
       
     #=============================FIND A PLAYLIST==============================      
     def searchp(self,playlist_id):
-        for i in range(1,len(self.playlists)+1):
-            if self.playlists[i].playlist_id == playlist_id:
-                self.playlists[i].showAllInfo()
-                break
-            
+        self.playlists.show_all_from_one_playlist(playlist_id)
             
    
     #=========================SEARCH MUSIC IN PLAYLIST=========================
     def searchmp(self,playlist_id,music_id):
-        for i in range(1,len(self.playlists)+1):
-            if self.playlists[i].playlist_id == playlist_id:
-                self.playlists[i].search(music_id)
+        self.playlists.search_song_from_one_playlist(playlist_id,music_id)
     
     #========================REMOVE MUSIC FROM PLAYLIST========================    
     def delmp(self,playlist_id,music_id):
-        for i in range(1,len(self.playlists)+1):
-            if self.playlists[i].playlist_id == playlist_id:
-                self.playlists[i].delete(music_id)
+        self.playlists.delete_song_from_one_playlist(playlist_id,music_id)
                 
     #=======================PRINT ALL ARTISTS INFORMATION======================
     def prints(self):
@@ -192,7 +182,7 @@ class Spotifun:
         self.SSet.all_songs.delete_all_info()
         self.Sh.history_songs.delete_all_info()
         self.SSet.clear()
-        self.playlists = {}
+        self.playlists.delete_all_info()
         # self.sparse.clear()
         # self.dense.clear()
         # self.artist_name.clear()
@@ -210,9 +200,7 @@ class Spotifun:
             print(f"music for < {input} > not found")
             
     def showp(self,playlist_id):
-        for i in range(1,len(self.playlists)+1):
-            if self.playlists[i].playlist_id == playlist_id:
-                self.playlists[i].merge_by_year()
+        self.playlists.show_sorted(playlist_id)
     
     
     def playm(self,artist_id,music_id):
@@ -234,9 +222,7 @@ class Spotifun:
         music = artist.songs.get_music_by_id(music_id)
         artist.deletion(music)
         self.SSet.all_songs.delete(music)
-        for i in range(1,len(self.playlists)+1):
-            if self.playlists[i].playlist_songs.search(music):
-                self.playlists[i].delete(music_id)
+        self.playlists.delete_song_of_all_playlist(music,music_id)
         self.Sh.history_songs.delete(music)
     # # a auxiliary function       
     # def contains(self,artist_id):
